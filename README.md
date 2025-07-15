@@ -178,27 +178,26 @@ You can also `center = 'block'` to center a multi-line text block as a whole, ra
 
 ### Rendering ASCII Art
 
-When rendering multi-line ASCII art, it's recommended that you provide a table of `[[ literal strings ]]`, so that you don't have to worry about escaping things like quotes and backslashes.
-
-You'll likely also want to align using `center = 'block'` as [mentioned above](#text-alignment), so that your art gets centered properly as a block.
+When rendering multi-line ASCII art, it's recommended that you provide a `[[ multiline literal string ]]`, so that you don't have to worry about escaping things like quotes and backslashes.
 
 ```lua
 require('startled').setup {
   content = {
     {
-      text = {
-        [[ _   _      _ _         ____                   _   _  __       _ ]],
-        [[| | | | ___| | | ___   | __ )  ___  __ _ _   _| |_(_)/ _|_   _| |]],
-        [[| |_| |/ _ \ | |/ _ \  |  _ \ / _ \/ _` | | | | __| | |_| | | | |]],
-        [[|  _  |  __/ | | (_) | | |_) |  __/ (_| | |_| | |_| |  _| |_| | |_]],
-        [[|_| |_|\___|_|_|\___/  |____/ \___|\__,_|\__,_|\__|_|_|  \__,_|_(_)]],
-      },
-      center = 'block',
+      text = [[
+ _   _      _ _         ____                   _   _  __       _
+| | | | ___| | | ___   | __ )  ___  __ _ _   _| |_(_)/ _|_   _| |
+| |_| |/ _ \ | |/ _ \  |  _ \ / _ \/ _` | | | | __| | |_| | | | |
+|  _  |  __/ | | (_) | | |_) |  __/ (_| | |_| | |_| |  _| |_| | |_
+|_| |_|\___|_|_|\___/  |____/ \___|\__,_|\__,_|\__|_|_|  \__,_|_(_)
+]],
       hl = 'StartledPrimary',
     },
   },
 }
 ```
+
+Just be mindful to remove indentation at the start of each line within your `text` block, because this whitespace will be assumed as part of your art.
 
 ### Rendering Dynamic Content
 

@@ -53,6 +53,24 @@ M.setup = function(opts)
         if item.text and type(item.text) == 'function' then
           evaluated_item.text = item.text()
         end
+        -- Handle multiline strings by splitting them into arrays
+        if evaluated_item.text and type(evaluated_item.text) == 'string' and evaluated_item.text:find('\n') then
+          local lines = {}
+          for line in evaluated_item.text:gmatch('[^\n]*') do
+            if line ~= '' or #lines == 0 then  -- Keep empty lines except trailing ones
+              table.insert(lines, line)
+            end
+          end
+          -- Remove trailing empty line if it exists
+          if #lines > 0 and lines[#lines] == '' then
+            table.remove(lines)
+          end
+          evaluated_item.text = lines
+          -- Implicitly apply block centering for multiline strings
+          if evaluated_item.center == nil then
+            evaluated_item.center = 'block'
+          end
+        end
         evaluated_content[i] = evaluated_item
       else
         -- Handle single string text
