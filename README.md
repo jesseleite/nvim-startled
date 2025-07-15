@@ -219,6 +219,8 @@ require('startled').setup {
 
 In this case, we don't know how long the returned quotes will be, so we can ensure lines get wrapped nicely at 60 characters via `wrap = 60`.
 
+Furthermore, if you wish to prevent wrapping around certain phrases, you can use `<StartledNoWrap>` tags. For example, in Startled's [default quote provider](https://github.com/jesseleite/nvim-startled/blob/master/lua/startled/content/quotes.lua), we prevent wrapping in the middle of the attributed authors' names.
+
 ### Examples
 
 For a more advanced example, feel free to source-dive the [default start screen](https://github.com/jesseleite/nvim-startled/blob/master/lua/startled/content/default.lua) that ships with this plugin.
